@@ -1,27 +1,32 @@
 const conditions = [
-  "Moves without restriction",
-  "Holds structure under stress",
-  "Performs after repeated use",
+  ["Condition one", "Moves without restriction"],
+  ["Condition two", "Holds structure under stress"],
+  ["Condition three", "Performs after repeated"],
 ];
 
 export function StandardSection() {
   return (
-    <section className="bg-brand-yellow px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
-      <div className="mx-auto grid max-w-[1600px] gap-14 lg:grid-cols-[0.75fr_1.25fr] lg:gap-24">
+    <section className="bg-brand-yellow py-20 text-brand-black lg:py-44">
+      <div className="mx-auto grid max-w-[1920px] gap-14 px-8 sm:px-16 lg:grid-cols-[0.95fr_1fr] lg:items-center lg:px-20">
         <div>
-          <p className="text-xs font-black uppercase tracking-[0.3em]">The standard</p>
-          <h2 className="mt-6 max-w-xl text-5xl font-black uppercase leading-[0.9] tracking-[-0.05em] sm:text-7xl">Every product must pass three tests.</h2>
-          <p className="mt-7 max-w-md leading-7">If a product cannot prove itself under real training conditions, it does not carry the Delta mark.</p>
+          <h2 className="max-w-[760px] text-[clamp(3.8rem,6vw,6.6rem)] font-black uppercase leading-[0.94] tracking-[-0.065em]">
+            Every product<br />
+            must pass<br />
+            <span className="italic text-black/45">three tests.</span>
+          </h2>
+          <p className="mt-8 max-w-[800px] text-2xl font-medium leading-9 tracking-[-0.03em]">
+            If it fails any of these conditions, it does not ship. No exceptions. No compromises.
+          </p>
         </div>
-        <div className="space-y-3">
-          {conditions.map((condition, index) => (
-            <div key={condition} className="group flex min-h-36 items-end justify-between gap-5 bg-brand-black p-6 text-white transition hover:-translate-x-2 sm:p-8">
+        <div className="grid gap-9">
+          {conditions.map(([eyebrow, condition], index) => (
+            <article key={condition} className="grid min-h-36 grid-cols-[1fr_auto] items-center gap-8 bg-black px-8 py-8 text-white sm:px-12">
               <div>
-                <p className="text-xs font-black uppercase tracking-[0.25em] text-brand-yellow">Condition {["one", "two", "three"][index]}</p>
-                <h3 className="mt-3 max-w-xl text-2xl font-black uppercase leading-tight sm:text-3xl">{condition}</h3>
+                <p className="text-[clamp(1.7rem,2.2vw,2.8rem)] font-light uppercase leading-none tracking-[-0.05em]">{eyebrow}</p>
+                <h3 className="mt-3 text-[clamp(1.5rem,2vw,2.45rem)] font-black uppercase leading-none tracking-[-0.055em]">{condition}</h3>
               </div>
-              <span className="text-5xl font-black text-white/20 sm:text-7xl">0{index + 1}</span>
-            </div>
+              <span className="text-[clamp(2rem,2.4vw,3.1rem)] font-light tabular-nums">{String(index + 1).padStart(2, "0")}</span>
+            </article>
           ))}
         </div>
       </div>
