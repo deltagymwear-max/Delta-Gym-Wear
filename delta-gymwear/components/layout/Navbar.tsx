@@ -16,9 +16,13 @@ const links = [
   { href: "/#contact", label: "Contact Us" },
 ];
 
+const tickerSeparator = "//";
+
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const isHome = pathname === "/";
+  const useDarkHeader = isHome || scrolled;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -28,12 +32,28 @@ export function Navbar() {
   }, []);
 
   return (
-    <header className={cn("fixed inset-x-0 top-0 z-[60] border-b border-black/10 bg-white text-brand-black transition-shadow duration-150", scrolled && "shadow-[0_8px_30px_rgba(0,0,0,0.08)]")}>
-      <div className="bg-brand-black px-4 py-2 text-center text-[10px] font-black uppercase tracking-[0.18em] text-white sm:text-xs">
-        Free nationwide delivery over PKR 25,000 <span className="mx-2 text-brand-yellow">+</span> Easy 14-day exchanges
+    <header
+      className={cn(
+        "fixed inset-x-0 top-0 z-[60] transition duration-200",
+        useDarkHeader ? "text-white" : "border-b border-black/10 bg-white text-brand-black",
+        isHome && !scrolled ? "bg-transparent" : useDarkHeader ? "bg-brand-black shadow-[0_10px_34px_rgba(0,0,0,0.28)]" : "shadow-[0_8px_30px_rgba(0,0,0,0.08)]",
+      )}
+    >
+      <div className={cn("overflow-hidden whitespace-nowrap px-4 py-2 text-center text-[10px] font-semibold uppercase tracking-[0.12em]", isHome ? "bg-brand-black/90 text-white" : "bg-brand-black text-white")}>
+        <span>Function first. Always</span>
+        <span className="mx-6 text-white/70">{tickerSeparator}</span>
+        <span>Engineered for discipline</span>
+        <span className="mx-6 text-white/70">{tickerSeparator}</span>
+        <span>Fabric integrity. Always</span>
+        <span className="mx-6 text-white/70">{tickerSeparator}</span>
+        <span>Show up when no one&apos;s watching</span>
+        <span className="mx-6 text-white/70">{tickerSeparator}</span>
+        <span>Minimal. Precise</span>
+        <span className="mx-6 text-white/70">{tickerSeparator}</span>
+        <span>Change that is earned. Not assumed</span>
       </div>
-      <div className="mx-auto flex h-18 max-w-screen-2xl items-center justify-between px-4 sm:px-6 lg:px-12 xl:px-20 2xl:px-28">
-        <Logo />
+      <div className="mx-auto flex h-14 max-w-[1920px] items-center justify-between px-7 sm:px-10 lg:h-16 lg:px-16 xl:px-20 2xl:px-24">
+        <Logo inverted={useDarkHeader} />
         <NavigationMenu.Root className="hidden md:block">
           <NavigationMenu.List className="flex items-center gap-10">
             {links.map((link) => (
@@ -43,7 +63,8 @@ export function Navbar() {
                     href={link.href}
                     aria-current={pathname === link.href ? "page" : undefined}
                     className={cn(
-                      "flex min-h-11 items-center border-b-2 border-transparent text-xs font-black uppercase tracking-[0.16em] text-brand-black transition-colors duration-150 hover:text-brand-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow",
+                      "flex min-h-11 items-center border-b-2 border-transparent text-sm font-medium transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow",
+                      useDarkHeader ? "text-white hover:text-brand-yellow" : "text-brand-black hover:text-brand-muted",
                       pathname === link.href && "border-brand-yellow text-brand-yellow",
                     )}
                   >
@@ -55,13 +76,13 @@ export function Navbar() {
           </NavigationMenu.List>
         </NavigationMenu.Root>
         <div className="flex items-center gap-1">
-          <Link href="/shop" aria-label="Search products" className="grid size-11 place-items-center outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow">
+          <Link href="/shop" aria-label="Search products" className={cn("grid size-11 place-items-center outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow", useDarkHeader && "text-white")}>
             <Search className="size-5" />
           </Link>
           <CartDrawer />
           <Sheet>
             <SheetTrigger asChild>
-              <button aria-label="Open navigation" className="grid size-11 place-items-center outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow md:hidden">
+              <button aria-label="Open navigation" className={cn("grid size-11 place-items-center outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow md:hidden", useDarkHeader && "text-white")}>
                 <Menu className="size-6" />
               </button>
             </SheetTrigger>

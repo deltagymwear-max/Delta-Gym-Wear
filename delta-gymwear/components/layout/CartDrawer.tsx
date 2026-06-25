@@ -27,7 +27,7 @@ export function CartDrawer() {
       <SheetTrigger asChild>
         <button
           aria-label={`Open cart with ${count} items`}
-          className="relative grid size-11 place-items-center text-brand-black outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow"
+          className="relative grid size-11 place-items-center outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow"
         >
           <ShoppingBag className="size-5" />
           {count > 0 && (

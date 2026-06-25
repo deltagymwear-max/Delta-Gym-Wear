@@ -8,18 +8,17 @@ export function Logo({ className, inverted = false }: { className?: string; inve
       href="/"
       aria-label="Delta home"
       className={cn(
-        "relative block h-9 w-36 overflow-hidden outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow",
-        inverted && "invert",
+        "relative block h-10 w-36 overflow-hidden outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow sm:w-40",
         className,
       )}
     >
       <Image
-        src="/images/delta-logo.png"
+        src={inverted ? "/images/delta-logo-white.png" : "/images/delta-logo-transparent.png"}
         alt="Delta Gym Wear"
         fill
         priority
         sizes="144px"
-        className="object-cover"
+        className="object-contain object-left"
       />
     </Link>
   );

@@ -13,15 +13,15 @@ export function NewsletterSection() {
   }
 
   return (
-    <section className="bg-white py-16 text-center md:py-24 lg:py-32">
-      <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-12">
-        <p className="text-xs font-semibold uppercase tracking-[0.25em] text-brand-muted">Stay in the loop</p>
-        <h2 className="mt-5 text-6xl font-black uppercase leading-[0.85] tracking-[-0.06em] sm:text-8xl">No fluff.<br />Just drops.</h2>
-        <p className="mx-auto mt-7 max-w-xl font-medium leading-relaxed text-brand-muted">New product launches, training content, and brand updates.</p>
-        <form onSubmit={submit} className="mx-auto mt-9 flex max-w-xl flex-col gap-3 sm:flex-row">
+    <section className="bg-white px-6 py-28 text-center text-brand-black sm:py-40 lg:py-60">
+      <div className="mx-auto max-w-5xl">
+        <p className="text-2xl font-medium tracking-[-0.04em]">Stay In The Loop</p>
+        <h2 className="mt-8 text-[clamp(3rem,4.2vw,5.2rem)] font-black uppercase leading-[1.05] tracking-[-0.055em]">No fluff.<br />Just drops.</h2>
+        <p className="mx-auto mt-9 max-w-5xl text-xl font-medium leading-8 tracking-[-0.035em] sm:text-3xl">New product launches, training content, and brand updates. That&apos;s it. We don&apos;t do noise.</p>
+        <form onSubmit={submit} className="mx-auto mt-10 flex max-w-[820px] flex-col sm:flex-row">
           <label htmlFor="newsletter-email" className="sr-only">Email address</label>
-          <Input id="newsletter-email" name="email" required type="email" autoComplete="email" placeholder="EMAIL ADDRESS" className="h-14 flex-1 font-bold" />
-          <Button type="submit" variant="yellow" size="lg">Subscribe</Button>
+          <Input id="newsletter-email" name="email" required type="email" autoComplete="email" placeholder="info@deltagymwear.com" className="h-16 flex-1 border-0 bg-[#101112] text-center text-xl text-white placeholder:text-white sm:text-2xl" />
+          <Button type="submit" variant="yellow" size="lg" className="h-16 min-w-72 text-xl normal-case tracking-[-0.04em] sm:text-2xl">Subscribe</Button>
         </form>
         <p className="mt-3 min-h-5 text-sm font-medium text-brand-muted" role="status" aria-live="polite">{message}</p>
       </div>
